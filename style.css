@@ -9,3 +9,9 @@
 body {
 	background-color: #1d1d1d;
 }
+
+input {
+	background-color: #585858;
+	border-radius: 5px;
+	text-align: center;
+}
