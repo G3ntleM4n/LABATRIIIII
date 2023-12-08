@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>BIBBI</title>
+	<script src="app.js"></script>
+	<script src="prisma/schema.prisma"></script>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<container class="container">
+		<div>
+			<label for="name">Name</label>
+			<input type="text" id="name" placeholder="Введите имя">
+
+			<label for="age">Age</label>
+			<input type="number" id="age" placeholder="Введите age">
+
+			<label for="password">Password</label>
+			<input type="password" id="password" placeholder="Введите passСлово">
+
+			<button id="new-user-btn">Imya Batona</button>
+		</div>
+	</container>
+	<div>
+		<table>
+			<thead>
+				<th></th>
+				<th></th>
+				<th></th>
+			</thead>
+			<tbody>
+				{{users}}
+			</tbody>
+		</table>
+	</div>
+	<script>
+		(()=>{
+			const button = document.getElementById("new-user-btn");
+			button.addEventListener("click", async ()=>{
+				const name = document.getElementById("name").value
+				const age = document.getElementById("age").value
+				const password = document.getElementById("password").value
+
+				console.log(name, age, password)
+
+				const responce = await fetch(`/user?name=${name}&age=${age}&password=${password}`, {
+					method: 'POST'
+				})
+
+				if (responce.ok) {
+					window.location.reload()
+				}
+			})
+
+
+		})()
+	</script>
+</body>
+</html>
